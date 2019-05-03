@@ -9,6 +9,19 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Application", "Application"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Application", "Application\Application.csproj", "{0B13FDB7-67A7-47CE-9AA2-04B83F2C5FD5}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Contracts", "Contracts", "{D266C6C9-6F6E-49FF-A0EF-4B4FD6CC727D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Contracts", "Contracts\Contracts.csproj", "{E69B9434-1C39-4012-9FAA-87432C93CF2E}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tools", "Tools", "{F4BED07E-89BA-4AE6-9A45-67ECA979E732}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Dsl", "Dsl", "{80FD2405-7919-4C64-9019-73EABA111B3D}"
+	ProjectSection(SolutionItems) = preProject
+		Tools\Dsl\Antlr3.Runtime.dll = Tools\Dsl\Antlr3.Runtime.dll
+		Tools\Dsl\Dsl.exe = Tools\Dsl\Dsl.exe
+		Tools\Dsl\startDsl.bat = Tools\Dsl\startDsl.bat
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -23,12 +36,18 @@ Global
 		{0B13FDB7-67A7-47CE-9AA2-04B83F2C5FD5}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{0B13FDB7-67A7-47CE-9AA2-04B83F2C5FD5}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{0B13FDB7-67A7-47CE-9AA2-04B83F2C5FD5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E69B9434-1C39-4012-9FAA-87432C93CF2E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E69B9434-1C39-4012-9FAA-87432C93CF2E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E69B9434-1C39-4012-9FAA-87432C93CF2E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E69B9434-1C39-4012-9FAA-87432C93CF2E}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{0B13FDB7-67A7-47CE-9AA2-04B83F2C5FD5} = {C3DC427A-56FF-448D-B12B-E685E3FF6716}
+		{E69B9434-1C39-4012-9FAA-87432C93CF2E} = {D266C6C9-6F6E-49FF-A0EF-4B4FD6CC727D}
+		{80FD2405-7919-4C64-9019-73EABA111B3D} = {F4BED07E-89BA-4AE6-9A45-67ECA979E732}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {E5CFF83C-9755-4777-8AA8-062655EBD642}
