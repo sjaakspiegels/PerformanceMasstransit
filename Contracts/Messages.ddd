@@ -1,0 +1,30 @@
+﻿namespace Contracts;             
+    
+// put all generated classes into this namespace
+extern "Contracts";        
+    
+// algemene using file
+using Voogd.Library.Messaging
+
+// namespace for code contracts over the wire
+// define some commonly used constants (pairs of member type and name), 
+// to avoid typing them over and over again
+ 
+// define shortcut for identity
+if ! = IIdentity
+
+// simple value objects
+PerformanceMessage(string description, DateTime sendAt)
+
+
+// define application service 
+interface PerformanceTester (Guid AggregateId) 
+{    
+    // shortcut for commands / events
+    if ? = Command, ICommand;
+    if ! = Event, IEvent;
+
+	ProcessPerformanceMessage?(PerformanceMessage performanceMessage)
+		PerformanceMessageProcessed!(DateTime processedAt)
+
+} 
