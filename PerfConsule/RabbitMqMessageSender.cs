@@ -1,6 +1,7 @@
 ﻿namespace PerformanceConsole
 {
     using System;
+    using System.Diagnostics;
     using System.Text;
     using System.Threading.Tasks;
 
@@ -27,45 +28,36 @@
             };
         }
 
-        public Task SendCommands(int numberOfMessages)
+        public void SendCommands(int numberOfMessages)
         {
-            return Task.Run(() =>
+            Console.WriteLine("Start RabbitMQ sending");
+            var stopwatch = new Stopwatch();
+            stopwatch.Start();
+
+            using (var connection = this.factory.CreateConnection())
             {
-                using (var connection = this.factory.CreateConnection())
+                using (var channel = connection.CreateModel())
                 {
-                    using (var channel = connection.CreateModel())
+                    var messageProperties = channel.CreateBasicProperties();
+                    channel.ExchangeDeclare("PerformanceConsole:ShowRabbitMqMessage", "fanout", true, false, null);
+                    channel.ExchangeDeclare("RabbitMqService", "fanout", true, false, null);
+                    channel.QueueDeclare("RabbitMqService", true, false, false, null);
+                    channel.ExchangeBind("RabbitMqService", "PerformanceConsole:ShowRabbitMqMessage", "", null);
+                    channel.QueueBind("RabbitMqService", "RabbitMqService", "", null);
+                    for (var i = 0; i < numberOfMessages; i++)
                     {
-                        var messageProperties = channel.CreateBasicProperties();
-            //            messageProperties.Persistent = true;
-
-                        channel.ConfirmSelect();
-
-              //          var tasks = new List<Task>();
-
-                        channel.ExchangeDeclare("PerformanceConsole:ShowRabbitMqMessage", "fanout", true, false, null);
-                        channel.ExchangeDeclare("RabbitMqService", "fanout", true, false, null);
-                        channel.QueueDeclare("RabbitMqService", true, false, false, null);
-                        channel.ExchangeBind("RabbitMqService", "PerformanceConsole:ShowRabbitMqMessage", "", null);
-                        channel.QueueBind("RabbitMqService", "RabbitMqService", "", null);
-                        for (var i = 0; i < numberOfMessages; i++)
+                        var bericht = new
                         {
-                            var bericht = new
-                            {
-                                Volgnummer = 1,
-                                Tekst = "Bericht"
-                            };
-                            var body = Encoding.UTF8.GetBytes(JsonConvert.SerializeObject(bericht));
-                //            tasks.Add(Task.Run(() =>
-                  //          {
-                                channel.BasicPublish("RabbitMqService", "", messageProperties, body);
-                                channel.WaitForConfirms();
-                    //        }));
-                        }
-
-                      //  Task.WaitAll(tasks.ToArray());
+                            Volgnummer = 1,
+                            Tekst = "Bericht"
+                        };
+                        var body = Encoding.UTF8.GetBytes(JsonConvert.SerializeObject(bericht));
+                        channel.BasicPublish("RabbitMqService", "", messageProperties, body);
                     }
                 }
-            });
+            }
+
+            Console.WriteLine($"Finished RabbitMQ sending in {stopwatch.ElapsedMilliseconds} ms.");
         }
 
     }

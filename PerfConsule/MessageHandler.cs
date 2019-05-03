@@ -1,5 +1,8 @@
 ﻿namespace PerformanceConsole
 {
+    using System;
+    using System.Net;
+    using System.Runtime.Remoting.Contexts;
     using System.Threading.Tasks;
 
     using MassTransit;
@@ -8,10 +11,23 @@
 
     public class MessageHandler : Handler, IConsumer<IMyMessage>
     {
-        public Task Consume(ConsumeContext<IMyMessage> context)
+        private static readonly Random  random = new Random();
+
+        public async Task Consume(ConsumeContext<IMyMessage> context)
         {
-            return Task.FromResult(0);
+          //  Task.Yield();
+           // Console.WriteLine("Consumed");
+
+           if (random.Next(10) < 6)
+           {
+               var rety = context.GetRetryAttempt();
+               if (rety > 4)
+               {
+                   throw new Exception($"Er gaat iets fout met message {context.Message.Number}");
+               }
+               await context.Defer(TimeSpan.FromSeconds(2));
+           }
         }
     }
-
 }
+

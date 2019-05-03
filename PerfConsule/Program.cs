@@ -7,21 +7,19 @@ namespace PerformanceConsole
 
     class Program
     {
-        static void Main(string[] args)
+        static async Task Main(string[] args)
         {
 
-            Console.WriteLine("test");
+            Console.WriteLine("start test");
 
             var rabbitMqSender = new RabbitMqMessageSender("TestMessages", "TestMessages", "rabbitmq://rabbitmq.voogdlocal.com");
             var masstransitSender = new MasstransitMessageSender("TestMessages", "TestMessages", "rabbitmq://rabbitmq.voogdlocal.com");
 
+ //           var rabbitMqSender = new RabbitMqMessageSender("guest", "guest", "rabbitmq://localhost");
+//            var masstransitSender = new MasstransitMessageSender("guest", "guest", "rabbitmq://localhost");
 
-            var lst = new List<Task>
-            {
-                rabbitMqSender.SendCommands(10000),
-                masstransitSender.SendCommands(10000)
-            };
-            Task.WaitAll(lst.ToArray());
+ //           rabbitMqSender.SendCommands(100000);
+            await masstransitSender.SendCommands(100000);
         }
     }
 }
