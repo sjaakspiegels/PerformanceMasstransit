@@ -4,18 +4,17 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{1C98E6C0-1F00-4758-A473-79CB2398AFBB}</ProjectGuid>
-    <OutputType>Exe</OutputType>
-    <RootNamespace>PerformanceConsole</RootNamespace>
-    <AssemblyName>PerfConsule</AssemblyName>
+    <ProjectGuid>{D75250E3-C2A3-475F-9C6B-FB843ABEC680}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Performance.Infrastructure.Bus</RootNamespace>
+    <AssemblyName>Performance.Infrastructure.Bus</AssemblyName>
     <TargetFrameworkVersion>v4.7.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
-    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
     <Deterministic>true</Deterministic>
     <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
-    <PlatformTarget>AnyCPU</PlatformTarget>
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
@@ -25,7 +24,6 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
-    <PlatformTarget>AnyCPU</PlatformTarget>
     <DebugType>pdbonly</DebugType>
     <Optimize>true</Optimize>
     <OutputPath>bin\Release\</OutputPath>
@@ -35,10 +33,10 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Castle.Core, Version=4.0.0.0, Culture=neutral, PublicKeyToken=407dd0808d44fbdc, processorArchitecture=MSIL">
-      <HintPath>..\packages\Castle.Core.4.3.1\lib\net45\Castle.Core.dll</HintPath>
+      <HintPath>..\packages\Castle.Core.4.4.0\lib\net45\Castle.Core.dll</HintPath>
     </Reference>
-    <Reference Include="Castle.Windsor, Version=4.0.0.0, Culture=neutral, PublicKeyToken=407dd0808d44fbdc, processorArchitecture=MSIL">
-      <HintPath>..\packages\Castle.Windsor.4.1.1\lib\net45\Castle.Windsor.dll</HintPath>
+    <Reference Include="Castle.Windsor, Version=5.0.0.0, Culture=neutral, PublicKeyToken=407dd0808d44fbdc, processorArchitecture=MSIL">
+      <HintPath>..\packages\Castle.Windsor.5.0.0\lib\net45\Castle.Windsor.dll</HintPath>
     </Reference>
     <Reference Include="GreenPipes, Version=2.1.2.111, Culture=neutral, PublicKeyToken=b800c4cfcdeea87b, processorArchitecture=MSIL">
       <HintPath>..\packages\GreenPipes.2.1.2\lib\net452\GreenPipes.dll</HintPath>
@@ -51,9 +49,6 @@
     </Reference>
     <Reference Include="MassTransit.RabbitMqTransport, Version=5.1.5.1633, Culture=neutral, PublicKeyToken=b8e0e9f2f1e657fa, processorArchitecture=MSIL">
       <HintPath>..\packages\MassTransit.RabbitMQ.5.1.5\lib\net452\MassTransit.RabbitMqTransport.dll</HintPath>
-    </Reference>
-    <Reference Include="MassTransit.WindsorIntegration, Version=5.1.5.1633, Culture=neutral, PublicKeyToken=b8e0e9f2f1e657fa, processorArchitecture=MSIL">
-      <HintPath>..\packages\MassTransit.CastleWindsor.5.1.5\lib\net452\MassTransit.WindsorIntegration.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.Diagnostics.Tracing.EventSource, Version=1.1.28.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.Diagnostics.Tracing.EventSource.Redist.1.1.28\lib\net46\Microsoft.Diagnostics.Tracing.EventSource.dll</HintPath>
@@ -83,7 +78,6 @@
     <Reference Include="System.Drawing" />
     <Reference Include="System.Net" />
     <Reference Include="System.Runtime.Remoting" />
-    <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.Security.AccessControl, Version=4.1.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
       <HintPath>..\packages\System.Security.AccessControl.4.5.0\lib\net461\System.Security.AccessControl.dll</HintPath>
     </Reference>
@@ -105,14 +99,11 @@
     <Reference Include="System.Data" />
     <Reference Include="System.Net.Http" />
     <Reference Include="System.Xml" />
-    <Reference Include="Voogd.Library.Attributes, Version=1.1.1.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\Voogd.Library.Attributes.1.1.1.0\lib\Voogd.Library.Attributes.dll</HintPath>
-    </Reference>
     <Reference Include="Voogd.Library.Configuration, Version=1.1.1.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\Voogd.Library.Configuration.1.1.1.0\lib\Voogd.Library.Configuration.dll</HintPath>
     </Reference>
     <Reference Include="Voogd.Library.DomainBase.Dispatcher, Version=1.1.1.1, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\Voogd.Library.DomainBase.Dispatcher.1.2.4\lib\netstandard2.0\Voogd.Library.DomainBase.Dispatcher.dll</HintPath>
+      <HintPath>..\packages\Voogd.Library.DomainBase.Dispatcher.1.1.1.1\lib\Voogd.Library.DomainBase.Dispatcher.dll</HintPath>
     </Reference>
     <Reference Include="Voogd.Library.DomainBase.Messaging, Version=1.1.1.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\Voogd.Library.DomainBase.Messaging.1.2.1\lib\netstandard2.0\Voogd.Library.DomainBase.Messaging.dll</HintPath>
@@ -134,17 +125,18 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="MyMessage.cs" />
-    <Compile Include="MessageHandler.cs" />
-    <Compile Include="RabbitMqMessageSender.cs" />
-    <Compile Include="MasstransitMessageSender.cs" />
-    <Compile Include="MyMessageHandlerException.cs" />
-    <Compile Include="Program.cs" />
+    <Compile Include="DomainBusInstaller.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="App.config" />
+    <None Include="app.config" />
     <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Domain\Performance.Domain.csproj">
+      <Project>{6ff935d1-a73f-4a57-85fb-48cb18ff04f2}</Project>
+      <Name>Performance.Domain</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

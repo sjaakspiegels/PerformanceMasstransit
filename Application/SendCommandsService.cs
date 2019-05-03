@@ -1,9 +1,8 @@
-﻿namespace Application
+﻿namespace Performance.Application
 {
     using System;
 
     using Voogd.Library.Messaging;
-
 
     public class SendCommandsService : ISendCommandsService
     {

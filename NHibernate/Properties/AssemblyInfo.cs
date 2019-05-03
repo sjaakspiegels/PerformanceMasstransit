@@ -5,11 +5,11 @@ using System.Runtime.InteropServices;
 // General Information about an assembly is controlled through the following
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("Performance.Domain")]
+[assembly: AssemblyTitle("Performance.Infrastructure.NHibernate")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("")]
-[assembly: AssemblyProduct("Performance.Domain")]
+[assembly: AssemblyProduct("Performance.Infrastructure.NHibernate")]
 [assembly: AssemblyCopyright("Copyright ©  2019")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
@@ -20,7 +20,7 @@ using System.Runtime.InteropServices;
 [assembly: ComVisible(false)]
 
 // The following GUID is for the ID of the typelib if this project is exposed to COM
-[assembly: Guid("6ff935d1-a73f-4a57-85fb-48cb18ff04f2")]
+[assembly: Guid("09ba47f3-18f7-4a40-baec-d5c5fa085a59")]
 
 // Version information for an assembly consists of the following four values:
 //

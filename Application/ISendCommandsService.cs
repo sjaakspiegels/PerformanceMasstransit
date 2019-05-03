@@ -1,4 +1,4 @@
-﻿namespace Application
+﻿namespace Performance.Application
 {
     public interface ISendCommandsService
     {
