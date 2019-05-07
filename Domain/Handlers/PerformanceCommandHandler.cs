@@ -11,10 +11,10 @@
 
         private readonly int delay;
 
-        public PerformanceCommandHandler(IWorkRepository repository, int delay)
+        public PerformanceCommandHandler(IWorkRepository repository)
         {
             this.repository = repository;
-            this.delay = delay;
+            this.delay = 10;
         }
 
         public void When(ProcessPerformanceMessage message)

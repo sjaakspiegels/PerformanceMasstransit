@@ -34,8 +34,8 @@
                             });
                         x.RunAsLocalSystem();
                         x.SetDescription("Altas domain service voor converteren van polissen naar Via.");
-                        x.SetDisplayName("Voogd Via Domain Service");
-                        x.SetServiceName("Voogd.Via.Domain.Service");
+                        x.SetDisplayName("Domain Service");
+                        x.SetServiceName("Domain.Service");
                     });
             }
             catch (Exception e)
