@@ -38,6 +38,10 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Interfaces", "Interfaces", 
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Performance.SendCommandsService", "SendCommandService\Performance.SendCommandsService.csproj", "{ABC70806-B2CC-4E5D-8A89-953F337F52EF}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Library", "Library", "{DC565239-1A79-412C-9385-66E19E72F9F6}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Performance.Library", "Library\Performance.Library.csproj", "{4FA31D89-8F6A-4078-BB65-370F433EF0D1}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -76,6 +80,10 @@ Global
 		{ABC70806-B2CC-4E5D-8A89-953F337F52EF}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{ABC70806-B2CC-4E5D-8A89-953F337F52EF}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{ABC70806-B2CC-4E5D-8A89-953F337F52EF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4FA31D89-8F6A-4078-BB65-370F433EF0D1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4FA31D89-8F6A-4078-BB65-370F433EF0D1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4FA31D89-8F6A-4078-BB65-370F433EF0D1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4FA31D89-8F6A-4078-BB65-370F433EF0D1}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -89,6 +97,7 @@ Global
 		{09BA47F3-18F7-4A40-BAEC-D5C5FA085A59} = {CC8FD55E-D0E0-43C6-9FAA-9CC5708DA151}
 		{D75250E3-C2A3-475F-9C6B-FB843ABEC680} = {CC8FD55E-D0E0-43C6-9FAA-9CC5708DA151}
 		{ABC70806-B2CC-4E5D-8A89-953F337F52EF} = {B0FE72D9-1F0C-4A9C-AC48-2CEBE7A60E02}
+		{4FA31D89-8F6A-4078-BB65-370F433EF0D1} = {DC565239-1A79-412C-9385-66E19E72F9F6}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {E5CFF83C-9755-4777-8AA8-062655EBD642}

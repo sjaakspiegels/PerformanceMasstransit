@@ -2,6 +2,6 @@
 {
     public interface IWorkRepository
     {
-        void DoWork(int delay);
+        void DoWork();
     }
 }

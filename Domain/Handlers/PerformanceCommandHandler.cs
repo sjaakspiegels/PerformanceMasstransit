@@ -1,25 +1,50 @@
 ﻿namespace Performance.Domain.Handlers
 {
-    using Performance.Contratcs;
+    using System;
+    using System.Collections.Concurrent;
+    using System.Threading.Tasks;
+
+    using Performance.Contracts;
+    using Performance.Library;
 
     using Voogd.Library.Messaging;
 
-    public class PerformanceCommandHandler : Handler, IPerformanceTesterApplicationService,
-        IConsume<ProcessPerformanceMessage>
+    using MessageRetry = Performance.Library.MessageRetry;
+
+    public class PerformanceCommandHandler : Handler, 
+        IPerformanceTesterApplicationService,
+        Library.IConsumeAsync<ProcessPerformanceMessage>
     {
         private readonly IWorkRepository repository;
 
-        private readonly int delay;
+        private static Random rnd = new Random();
 
         public PerformanceCommandHandler(IWorkRepository repository)
         {
             this.repository = repository;
-            this.delay = 10;
         }
 
-        public void When(ProcessPerformanceMessage message)
+        public Task When(ProcessPerformanceMessage message)
         {
-            this.repository.DoWork(this.delay);
+            return Task.Run(() =>
+            {
+                if (rnd.Next(100) < 5)
+                {
+                    throw new Library.MessageHandlerException(new Exception("Bewuste fout"),
+                        MessageRetry.RedeliverRetry);
+                }
+
+                this.repository.DoWork();
+            });
         }
+
+        //public void When(ProcessPerformanceMessage message)
+        //{
+        //    //if (rnd.Next(100) < 5)
+        //    //{
+        //    //    throw new Library.MessageHandlerException(new Exception("Bewuste fout"), MessageRetry.ImmediateError);
+        //    //}
+        //    this.repository.DoWork();
+        //}
     }
 }

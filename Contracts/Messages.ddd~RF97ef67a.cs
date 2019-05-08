@@ -1,7 +1,6 @@
 using System;
 using System.Collections.Generic;
 using System.Runtime.Serialization;
-using System.Threading.Tasks;
 using Voogd.Library.Messaging;
 
 // ReSharper disable PartialTypeWithSinglePart
@@ -51,7 +50,7 @@ namespace Performance.Contracts
   
   public interface IPerformanceTesterApplicationService
   {
-    Task When(ProcessPerformanceMessage c);
+    void When(ProcessPerformanceMessage c);
   }
   
   public interface IPerformanceTesterState

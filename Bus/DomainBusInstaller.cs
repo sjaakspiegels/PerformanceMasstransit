@@ -13,7 +13,6 @@
 
     using Voogd.Library.DomainBase.Dispatcher;
     using Voogd.Library.DomainBase.Messaging.MassTransit;
-    using Voogd.Library.Messaging.MassTransit;
 
     public class DomainBusInstaller : IWindsorInstaller
     {
@@ -35,7 +34,7 @@
             }
 
             // Installeert de commandhandler in de bus
-            container.Install(new ConsumerInstaller<PerformanceCommandHandler>());
+            container.Install(new Library.ConsumerInstaller<PerformanceCommandHandler>());
         }
     }
 }

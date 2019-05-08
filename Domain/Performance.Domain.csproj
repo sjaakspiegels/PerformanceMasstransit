@@ -63,8 +63,13 @@
       <Project>{e69b9434-1c39-4012-9faa-87432c93cf2e}</Project>
       <Name>Performance.Contracts</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Library\Performance.Library.csproj">
+      <Project>{4fa31d89-8f6a-4078-bb65-370f433ef0d1}</Project>
+      <Name>Performance.Library</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <None Include="app.config" />
     <None Include="packages.config" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

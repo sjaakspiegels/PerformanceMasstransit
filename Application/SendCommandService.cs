@@ -3,7 +3,7 @@
     using System;
     using System.Threading.Tasks;
 
-    using Performance.Contratcs;
+    using Performance.Contracts;
 
     using Voogd.Library.Messaging;
 

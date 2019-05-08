@@ -16,18 +16,7 @@
     public class WorkRepository : Repository<Dummy>,
                                   IWorkRepository
     {
-
-        //protected ISession Session
-        //{
-        //    get
-        //    {
-        //        return UnitOfWork.Current.Session;
-        //    }
-        //}
-
-        //protected ISession Session => UnitOfWork.Current.Session;
-
-        public void DoWork(int delay)
+        public void DoWork()
         {
             this.Session.CreateSQLQuery("EXEC Conversie..Delay").ExecuteUpdate();
         }
