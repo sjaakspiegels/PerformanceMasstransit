@@ -1,3 +1,4 @@
+using Performance.Library;
 using System;
 using System.Collections.Generic;
 using System.Runtime.Serialization;
@@ -51,7 +52,7 @@ namespace Performance.Contracts
   
   public interface IPerformanceTesterApplicationService
   {
-    Task When(ProcessPerformanceMessage c);
+    void When(ProcessPerformanceMessage c);
   }
   
   public interface IPerformanceTesterState

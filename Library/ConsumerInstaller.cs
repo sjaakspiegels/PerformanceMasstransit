@@ -7,6 +7,8 @@
     using global::MassTransit.WindsorIntegration;
     using System.Linq;
 
+    using MassTransit;
+
     /// <summary>
     /// Installer class voor de unit of work
     /// </summary>
@@ -31,7 +33,7 @@
                 var messageType = interfaceType.GetGenericArguments().First();
 
                 // Genereer voor elke interface een consumer type
-                var consumer = typeof(Consumer<,>).MakeGenericType(messageType, consumerType);
+                var consumer = typeof(Voogd.Library.Messaging.MassTransit.Consumer<,>).MakeGenericType(messageType, consumerType);
                 container.Register(Component.For(consumer).LifeStyle.Scoped<MessageScope>());
             }
         }

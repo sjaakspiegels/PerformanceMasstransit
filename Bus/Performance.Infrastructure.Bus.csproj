@@ -50,6 +50,9 @@
     <Reference Include="MassTransit.RabbitMqTransport, Version=5.1.5.1633, Culture=neutral, PublicKeyToken=b8e0e9f2f1e657fa, processorArchitecture=MSIL">
       <HintPath>..\packages\MassTransit.RabbitMQ.5.1.5\lib\net452\MassTransit.RabbitMqTransport.dll</HintPath>
     </Reference>
+    <Reference Include="MassTransit.WindsorIntegration, Version=5.1.5.1633, Culture=neutral, PublicKeyToken=b8e0e9f2f1e657fa, processorArchitecture=MSIL">
+      <HintPath>..\packages\MassTransit.CastleWindsor.5.1.5\lib\net452\MassTransit.WindsorIntegration.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.Diagnostics.Tracing.EventSource, Version=1.1.28.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.Diagnostics.Tracing.EventSource.Redist.1.1.28\lib\net46\Microsoft.Diagnostics.Tracing.EventSource.dll</HintPath>
     </Reference>
@@ -126,6 +129,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="DomainBusInstaller.cs" />
+    <Compile Include="PerformanceCommandsConsumer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ServiceBusInstaller.cs" />
   </ItemGroup>

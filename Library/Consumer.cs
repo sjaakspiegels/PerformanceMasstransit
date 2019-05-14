@@ -5,13 +5,15 @@
     using System;
     using System.Threading.Tasks;
 
+    using GreenPipes.Util;
+
     /// <summary>
     /// Deze consumer klasse gebruik je om je op een bepaalde 
     /// message te abonneren bij Masstransit
     /// </summary>
     public class Consumer<TMessage, TConsumer> : IConsumer<TMessage>
         where TMessage : class, IMessage
-        where TConsumer : IConsume<TMessage>
+        where TConsumer : Library.IConsume<TMessage>
     {
         /// <summary>
         /// De consumer / handler van een message
@@ -29,39 +31,69 @@
         /// <summary>
         /// Verwerkt de message als die ontvangen wordt vanaf de bus.
         /// </summary>
+        //public async Task Consume(ConsumeContext<TMessage> context)
+        //{
+        //    try
+        //    {
+        //        if (this.consumer is IConsumeAsync<TMessage> @async)
+        //        {
+        //            await @async.When(context.Message);
+        //        }
+        //        else
+        //        {
+        //            (this.consumer as IConsumeSync<TMessage>)?.When(context.Message);
+        //        }
+        //    }
+        //    catch (MessageHandlerException e)
+        //    {
+        //        await this.HandleMessageHandlerException(context, e);
+        //    }
+        //    catch (AggregateException e)
+        //    {
+        //        var exception = MessageHandlerException.GetMessageHandlerException(e);
+        //        if (exception != null)
+        //        {
+        //            await this.HandleMessageHandlerException(context, exception);
+        //        }
+        //        else
+        //        {
+        //            throw;
+        //        }
+        //    }
+        //}
+
         public Task Consume(ConsumeContext<TMessage> context)
         {
-            return Task.Run(async () =>
+            return Task.Factory.StartNew(() =>
             {
                 try
                 {
-                    if (this.consumer is IConsumeAsync<TMessage> @async)
-                    {
-                        await @async.When(context.Message);
-                    }
-                    else
-                    {
-                        (this.consumer as IConsumeSync<TMessage>)?.When(context.Message);
-                    }
+                    (this.consumer as IConsumeSync<TMessage>)?.When(context.Message);
                 }
                 catch (MessageHandlerException e)
                 {
-                    await this.HandleMessageHandlerException(context, e);
-                }
-                catch (AggregateException e)
-                {
-                    var exception = MessageHandlerException.GetMessageHandlerException(e);
-                    if (exception != null)
+                    switch (e.ErrorRetry)
                     {
-                        await this.HandleMessageHandlerException(context, exception);
-                    }
-                    else
-                    {
-                        throw;
+                        case MessageRetry.RedeliverRetry when this.RetryCount(context) < e.Retries:
+                            context.Defer(e.Delay ?? TimeSpan.FromSeconds(1));
+                            break;
+                        case MessageRetry.ImmediateRetry when this.RetryCount(context) < e.Retries:
+                            context.Defer(TimeSpan.FromMilliseconds(1));
+                            break;
+                        case MessageRetry.NoRetry:
+                            // No retry. Laat de message verdwijnen
+                            break;
+                        case MessageRetry.ImmediateError:
+                            // ImmediateError. Zet de message direct op de error queue
+                            throw;
+                        default:
+                            throw;
                     }
                 }
             });
         }
+
+
 
         /// <summary>
         /// Afhandelen van een messagehandler exception
@@ -69,19 +101,17 @@
         /// <param name="context"></param>
         /// <param name="e"></param>
         /// <returns></returns>
-        private async Task HandleMessageHandlerException(ConsumeContext<TMessage> context, MessageHandlerException e)
+        private Task HandleMessageHandlerException(ConsumeContext<TMessage> context, MessageHandlerException e)
         {
             switch (e.ErrorRetry)
             {
                 case MessageRetry.RedeliverRetry when this.RetryCount(context) < e.Retries:
-                    await context.Defer(e.Delay ?? TimeSpan.FromSeconds(1));
-                    break;
+                    return context.Redeliver(e.Delay ?? TimeSpan.FromSeconds(1));
                 case MessageRetry.ImmediateRetry when this.RetryCount(context) < e.Retries:
-                    await context.Defer(TimeSpan.FromMilliseconds(1));
-                    break;
+                    return context.Redeliver(TimeSpan.FromMilliseconds(1));
                 case MessageRetry.NoRetry:
                     // No retry. Laat de message verdwijnen
-                    break;
+                    return TaskUtil.Completed;
                 case MessageRetry.ImmediateError:
                     // ImmediateError. Zet de message direct op de error queue
                     throw e;

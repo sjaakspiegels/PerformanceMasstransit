@@ -70,13 +70,17 @@
         {
             return Task.Run(async () =>
             {
-                while (true)
-                {
-                    using (this.container.BeginScope())
+//                while (true)
+//                {
+                    for (int i = 0; i < 100000; i++)
                     {
-                        await this.sendCommandService.SendCommand();
+
+                        using (this.container.BeginScope())
+                        {
+                            await this.sendCommandService.SendCommand();
+                        }
                     }
-                }
+//                }
             });
         }
 

@@ -53,5 +53,11 @@
     <None Include="Messages.ddd" />
     <None Include="packages.config" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Library\Performance.Library.csproj">
+      <Project>{4fa31d89-8f6a-4078-bb65-370f433ef0d1}</Project>
+      <Name>Performance.Library</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

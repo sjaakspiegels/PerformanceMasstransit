@@ -16,6 +16,8 @@
 
     using Voogd.Library.Messaging.MassTransit;
 
+    using ServiceBusInstaller = Infrastructure.Bus.ServiceBusInstaller;
+
     public partial class DomainService : ServiceBase
     {
         /// <summary>
